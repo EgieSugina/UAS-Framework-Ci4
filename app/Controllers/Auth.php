@@ -30,9 +30,10 @@ class Auth extends Controller
             ->first();
         if ($user && password_verify($password, $user['password'])) {
             $userData = [
-                'user_id' => $user['id'],
+                'user_id' => $user['user_id'],
                 'username' => $user['username'],
-                'nama' => $user['nama'],
+                'fullname' => $user['fullname'],
+                'email' => $user['email'],
                 'role' => $user['role'],
                 'img' => $user['img'],
             ];
@@ -40,10 +41,10 @@ class Auth extends Controller
 
             if ($user['role'] === 'Admin') {
 
-                return redirect()->to('/admin-panel/dashboard')->with('success', 'Berhasil Login. Selamat Datang ' . $user['nama']);
+                return redirect()->to('/admin-panel/dashboard')->with('success', 'Berhasil Login. Selamat Datang ' . $user['fullname']);
             } else {
 
-                return redirect()->to('/')->with('success', 'Berhasil Login. Selamat Datang ' . $user['nama']);
+                return redirect()->to('/')->with('success', 'Berhasil Login. Selamat Datang ' . $user['fullname']);
             }
         } else {
             return redirect()->to('/login')->with('error', 'Invalid credentials');
@@ -51,12 +52,9 @@ class Auth extends Controller
     }
     public function register()
     {
-        $userData = $this->m_models->getUser();
-        if (empty($userData)) {
-            return view('register');
-        } else {
-            return redirect()->to('login');
-        }
+
+        return view('register');
+
     }
     public function logout()
     {
@@ -68,33 +66,29 @@ class Auth extends Controller
     {
         $validation = \Config\Services::validation();
         $validation->setRules([
-            'nama' => 'required',
+            'fullname' => 'required',
             'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
-            'role' => 'required',
-            'image' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
+
         ]);
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
-        $image = $this->request->getFile('image');
-        if ($image->isValid() && !$image->hasMoved()) {
-            $imageData = processAndUploadImage($image);
-            $nama = $this->request->getPost('nama');
-            $username = $this->request->getPost('username');
-            $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
-            $role = $this->request->getPost('role');
-            $userData = [
-                'nama' => $nama,
-                'img' => $imageData,
-                'username' => $username,
-                'password' => $password,
-                'role' => $role,
-            ];
-            $this->m_models->insert($userData);
-            return redirect()->to('login')->with('success', 'Pengguna berhasil dibuat.');
-        } else {
-            return redirect()->to('register')->with('errors', ['image' => 'Harap unggah file gambar yang valid.']);
-        }
+        $fullname = $this->request->getPost('fullname');
+        $username = $this->request->getPost('username');
+        $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
+        $email = $this->request->getPost('email');
+        $userData = [
+            'fullname' => $fullname,
+            'email' => $email,
+            'username' => $username,
+            'password' => $password,
+            'role' => 'Member',
+
+        ];
+        $this->m_models->insert($userData);
+        return redirect()->to('login')->with('success', 'Pengguna berhasil dibuat.');
+
     }
 }

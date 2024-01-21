@@ -7,9 +7,9 @@ class M_User extends Model
 {
 
     protected $table = 'users';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'user_id';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['username', 'password', 'role', 'nama', 'img'];
+    protected $allowedFields = ['user_id', 'fullname', 'username', 'email', 'role', 'password', 'img'];
     protected $validationRules = [];
     protected $validationMessages = [];
     protected $skipValidation = false;
