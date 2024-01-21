@@ -27,7 +27,8 @@ class Kint extends BaseConfig
     */
 
     /**
-     * @var list<class-string<ConstructablePluginInterface>|ConstructablePluginInterface>|null
+     * @var array<int, ConstructablePluginInterface|string>
+     * @phpstan-var list<class-string<ConstructablePluginInterface>|ConstructablePluginInterface>
      */
     public $plugins;
 
@@ -45,12 +46,14 @@ class Kint extends BaseConfig
     public int $richSort     = AbstractRenderer::SORT_FULL;
 
     /**
-     * @var array<string, class-string<ValuePluginInterface>>|null
+     * @var array<string, string>
+     * @phpstan-var array<string, class-string<ValuePluginInterface>>
      */
     public $richObjectPlugins;
 
     /**
-     * @var array<string, class-string<TabPluginInterface>>|null
+     * @var array<string, string>
+     * @phpstan-var array<string, class-string<TabPluginInterface>>
      */
     public $richTabPlugins;
 

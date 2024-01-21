@@ -41,11 +41,17 @@ class Autoload extends AutoloadConfig
      *       'App'         => APPPATH
      *   ];
      *
-     * @var array<string, list<string>|string>
+     * @var array<string, array<int, string>|string>
+     * @phpstan-var array<string, string|list<string>>
      */
     public $psr4 = [
         APP_NAMESPACE => APPPATH, // For custom app namespace
-        'Config'      => APPPATH . 'Config',
+        'Config' => APPPATH . 'Config',
+        'Libraries' => APPPATH . 'Libraries',
+        'Helpers' => APPPATH . 'Helpers',
+        'Michalsn\Uuid' => APPPATH . 'ThirdParty/uuid/src',
+        'Ramsey\Uuid' => APPPATH . 'ThirdParty/uuid-4.7.5/src',
+        'Brick\Math' => APPPATH . 'ThirdParty/math-0.12.1/src',
     ];
 
     /**
@@ -80,7 +86,8 @@ class Autoload extends AutoloadConfig
      *       '/path/to/my/file.php',
      *   ];
      *
-     * @var list<string>
+     * @var string[]
+     * @phpstan-var list<string>
      */
     public $files = [];
 
@@ -93,7 +100,8 @@ class Autoload extends AutoloadConfig
      *       'form',
      *   ];
      *
-     * @var list<string>
+     * @var string[]
+     * @phpstan-var list<string>
      */
-    public $helpers = [];
+    public $helpers = ['session'];
 }
