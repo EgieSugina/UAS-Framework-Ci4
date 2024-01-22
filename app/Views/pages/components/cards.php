@@ -24,8 +24,10 @@
                     <?= $row['judul_game'] ?>
                 </a></h3>
             <ul class="rating" id="rating-<?= $row['game_id'] ?>-<?= $uniq ?>"></ul>
-            <div class="price">Rp.
-                <?= $row['harga'] ?>
+            <div class="price">
+                <?php if (is_numeric($row['harga'])) {
+                    echo 'Rp ' . number_format($row['harga'], 0, '.', '.');
+                } ?>
             </div>
         </div>
     </div>

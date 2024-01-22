@@ -76,11 +76,16 @@
     <script>
         $(function () {
             $('.select2').select2()
-
             $('#summernote').summernote()
-
         })
+        function confirmDelete(url) {
+            var confirmMessage = "Are you sure you want to delete?";
+            if (window.confirm(confirmMessage)) {
+                window.location.href = url;
+            }
+        }
     </script>
+
     <script>
         $(" #table-main").DataTable({
             responsive: true, lengthChange: false, autoWidth: false, buttons: [{
@@ -92,7 +97,12 @@
                 extend: 'print', className: 'bg-warning',
                 text: '<i class="fas fa-print"></i> Print', exportOptions: {columns: 'th:not(:last-child)'}
             },],
-        }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)'); </script>
+        }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)');
+        $(" #table-main2").DataTable({
+            responsive: true, lengthChange: false, autoWidth: false, buttons: [],
+        }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)'); 
+    </script>
+
 </body>
 
 </html>

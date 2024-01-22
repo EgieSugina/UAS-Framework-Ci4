@@ -42,6 +42,8 @@ class Games extends Controller
     }
     public function save()
     {
+        $genre = $this->request->getPost('genre');
+
         $validation = \Config\Services::validation();
         $validation->setRules([
             'judul_game' => 'required',
@@ -72,7 +74,7 @@ class Games extends Controller
             'tanggal_rilis' => $tanggal_rilis,
             'publisher' => $publisher,
             'platform' => $platform,
-            'genre' => $genre,
+            'genre' => implode(',', $genre),
             'rating' => $rating,
             'deskripsi' => $deskripsi,
 
@@ -93,9 +95,61 @@ class Games extends Controller
     }
     public function edit($id)
     {
+        $data['role'] = $this->role;
+
         $data['game_product'] = $this->m_models->getGamesById($id);
-        $data['act'] = '/save';
+        $data['act'] = '/update';
         layoutAdmin('Tambah ' . $this->title, 'pages/admin/games/form', $data);
+    }
+    public function update()
+    {
+
+        $judul_game = $this->request->getPost('judul_game');
+        $harga = $this->request->getPost('harga');
+        $tanggal_rilis = $this->request->getPost('tanggal_rilis');
+        $publisher = $this->request->getPost('publisher');
+        $platform = $this->request->getPost('platform');
+        $genre = $this->request->getPost('genre');
+        $deskripsi = $this->request->getPost('deskripsi');
+        $rating = $this->request->getPost('rating');
+        $id = $this->request->getPost('game_id');
+
+        $userData = [
+            'judul_game' => $judul_game,
+            'harga' => $harga,
+            'tanggal_rilis' => $tanggal_rilis,
+            'publisher' => $publisher,
+            'platform' => $platform,
+            'genre' => implode(',', $genre),
+            'rating' => $rating,
+            'deskripsi' => $deskripsi,
+
+        ];
+        $backcover = $this->request->getFile('backcover');
+        $cover = $this->request->getFile('cover');
+        if ($cover->isValid() && !$cover->hasMoved()) {
+            $imageData = processAndUploadImage($cover);
+            $userData['cover'] = $imageData;
+        }
+        if ($backcover->isValid() && !$backcover->hasMoved()) {
+            $imageDatabackcover = processAndUploadImage($backcover);
+            $userData['backcover'] = $imageDatabackcover;
+        }
+        $this->m_models->updateGames($id, $userData);
+        return redirect()->to($this->role . '/games')->with('success', 'Barang berhasil dirubah.');
+
+    }
+    public function delete($id)
+    {
+        $hapus = $this->m_models->deleteByid($id);
+        if ($hapus) {
+            $msg = 'Data Pengguna berhasil dihapus.';
+            $status = 'success';
+        } else {
+            $msg = 'Data Pengguna gagal dihapus.';
+            $status = 'errors';
+        }
+        return redirect()->to($this->role . '/games')->with($status, $msg);
     }
 }
 
