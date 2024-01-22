@@ -1,5 +1,5 @@
 <?php
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use App\Models\M_User;
 use CodeIgniter\Controller;
@@ -21,23 +21,23 @@ class Users extends Controller
     public function index()
     {
         $data_table['data'] = $this->m_models->getUser();
-        $data_table['primaryKey'] = 'id';
+        $data_table['primaryKey'] = 'user_id';
         $data_table['judul'] = $this->title;
-        $data_table['header'] = ['Username', 'nama', 'Role'];
-        $data_table['fields'] = ['username', 'nama', 'role'];
+        $data_table['header'] = ['Fullname', 'Username ', 'Email'];
+        $data_table['fields'] = ['fullname', 'username', 'email'];
         $data = [
             'title' => $this->title,
-            'content' => view('pages/users/index', ['table' => view('components/tabels', $data_table)])
+            'content' => view('pages/admin/users/index', ['table' => view('pages/components/tabels', $data_table)])
         ];
-        echo view('layout', $data);
+        echo view('pages/admin/layout', $data);
     }
     public function tambah()
     {
         $data = [
             'title' => $this->title,
-            'content' => view('pages/users/form_tambah'),
+            'content' => view('pages/admin/users/form_tambah'),
         ];
-        echo view('layout', $data);
+        echo view('pages/admin/layout', $data);
     }
     public function save()
     {
@@ -77,9 +77,9 @@ class Users extends Controller
         $dataUsers = $this->m_models->getUserById($id);
         $data = [
             'title' => $this->title,
-            'content' => view('pages/users/form_edit', ['dataUsers' => $dataUsers]),
+            'content' => view('pages/admin/users/form_edit', ['dataUsers' => $dataUsers]),
         ];
-        echo view('layout', $data);
+        echo view('pages/admin/layout', $data);
     }
     public function update()
     {

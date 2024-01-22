@@ -157,7 +157,7 @@
     display: block;
 }
 .product-grid .product-content {
-    background: #fff;
+    background: #1c1e21;
     padding: 15px 12px;
     position: relative;
 }
@@ -187,13 +187,13 @@
     transition: all 0.3s ease 0s;
 }
 .product-grid .title a {
-    color: #444;
+    color: rgb(255, 255, 255);
 }
 .product-grid:hover .title {
     opacity: 0;
 }
 .product-grid .rating {
-    color: #1c1a19;
+    color: #ffaa00;
     font-size: 12px;
     padding: 0;
     margin: 0 0 11px;
@@ -208,4 +208,15 @@
     .product-grid {
         margin: 0 0 30px;
     }
+}
+.navbar-badge-mod {
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+.card-orange {
+    background-color: #e94560;
+}
+
+.image-container {
+    position: relative;
 }

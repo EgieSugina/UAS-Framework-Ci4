@@ -41,7 +41,7 @@ class Auth extends Controller
 
             if ($user['role'] === 'Admin') {
 
-                return redirect()->to('/admin-panel/dashboard')->with('success', 'Berhasil Login. Selamat Datang ' . $user['fullname']);
+                return redirect()->to('/admin/dashboard')->with('success', 'Berhasil Login. Selamat Datang ' . $user['fullname']);
             } else {
 
                 return redirect()->to('/')->with('success', 'Berhasil Login. Selamat Datang ' . $user['fullname']);

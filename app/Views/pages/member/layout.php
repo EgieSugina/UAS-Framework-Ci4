@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="<?= base_url('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/adminlte.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/custom.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/dist/css/animate.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/dist/css/owl.carousel.min.css'); ?>">
+
+    <!-- Summernote -->
 </head>
 
 <body class="hold-transition bg-content  dark-mode ">
@@ -29,28 +33,45 @@
                     <H1>Game<b>geist</b></H1>
                 </a>
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li class="p-4 bg-primary"><a href="#" class="nav-link px-2">Discover</a></li>
-                    <li class="p-4"><a href="#" class="nav-link px-2 link-dark">Browse</a></li>
+                    <li class="p-4 bg-primary"><a href="#" class="nav-link px-2">STORE</a></li>
+                    <li class="p-4"><a href="#" class="nav-link px-2 link-dark">LIBRARY</a></li>
 
                 </ul>
 
-                <div class="col-md-3 text-end d-flex justify-content-between">
-                    <div class="info">
-                        <a href="login" class="h2"><i class="far fa-regular fa-heart"></i></a>
-                        <a href="login" class="h2"><i class="far fa-solid fa-cart-shopping "></i></i></a>
-                    </div>
-                    <div class="info">
-                        <a href="login">Login</a>
-                    </div>
-                    <!-- <div class="user-panel  d-flex">
-                        <div class="image">
-                            <img src="<?= base_url('/assets/images/no-user.jpg') ?>" class="img-circle  " alt="User Image">
-                        </div>
-                        <div class="info">
-                            <a href="#" class="d-block"><a href="login">Nama User</a></a>
-                        </div>
-                    </div> -->
+                <div class="">
+                    <ul class="navbar-nav ml-auto d-flex flex-row">
 
+                        <!-- Messages Dropdown Menu -->
+                        <li class="mx-4 h2 align-self-center mb-0 dropdown">
+                            <a class="nav-link h2 align-self-center mb-0" href="#">
+                                <i class="far fa-regular fa-heart "></i>
+                            </a>
+                        </li>
+                        <!-- Notifications Dropdown Menu -->
+                        <li class="mx-4 h2 align-self-center mb-0 dropdown">
+                            <a class="nav-link h2 align-self-center mb-0" data-toggle="dropdown" href="#">
+                                <i class="far fa-solid fa-cart-shopping "></i>
+                                <span class="badge  badge-danger navbar-badge navbar-badge-mod">15</span>
+                            </a>
+
+                        </li>
+                        <li class="mx-4 align-self-center">
+                            <a class="nav-link font-weight-bolder" href="login">
+                                Login
+                            </a>
+                        </li>
+                        <li class="mx-4 align-self-center">
+                            <div class="user-panel  d-flex">
+                                <div class="image">
+                                    <img src="<?= base_url('/assets/images/no-user.jpg') ?>" class="img-circle  "
+                                        alt="User Image">
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="d-block"> Nama User</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </header>
         </div>
@@ -65,12 +86,12 @@
                             <h1 class="m-0">Recently Released
                             </h1>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item font-weight-bold"><a href="#">VIEW ALL PRODUCTS <i
-                                            class="fas fa-solid fa-arrow-right"></i></a></li>
-                            </ol>
-                        </div>
+                        <!-- <div class="col-sm-6">
+                                        <ol class="breadcrumb float-sm-right">
+                                            <li class="breadcrumb-item font-weight-bold"><a href="#">VIEW ALL PRODUCTS <i
+                                                class="fas fa-solid fa-arrow-right"></i></a></li>
+                                        </ol>
+                                    </div> -->
                     </div>
                 </div>
             </div>
@@ -78,44 +99,8 @@
 
 
             <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
+                <?= $content ?>
 
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid">
-                                <div class="product-image">
-                                    <a href="#" class="image">
-                                        <img class="pic-1"
-                                            src="https://cdn.akamai.steamstatic.com/steam/apps/1313140/hero_capsule_alt_assets_5.jpg">
-                                        <img class="pic-2"
-                                            src="https://image.api.playstation.com/vulcan/ap/rnd/202308/2022/58e732815b72c5fa8e0be6bfb8f1949256f63495417cba21.png">
-                                    </a>
-                                    <span class="product-hot-label bg-danger">hot</span>
-                                    <ul class="product-links">
-                                        <li><a href="#" data-tip="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                        <li><a href="#" data-tip="Compare"><i class="fa fa-random"></i></a></li>
-                                        <li><a href="#" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product-content">
-                                    <a class="add-to-cart" href="#">
-                                        <i class="fas fa-plus"></i>Add to cart
-                                    </a>
-                                    <h3 class="title"><a href="#">Men's Jacket</a></h3>
-                                    <ul class="rating">
-                                        <li class="fas fa-star"></li>
-                                        <li class="fas fa-star"></li>
-                                        <li class="fas fa-star"></li>
-                                        <li class="far fa-star"></li>
-                                        <li class="far fa-star"></li>
-                                    </ul>
-                                    <div class="price">$75.99</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </section>
         </div>
 
@@ -123,7 +108,7 @@
 
         <!-- <aside class="control-sidebar control-sidebar-dark">
 
-        </aside> -->
+                    </aside> -->
 
 
 
@@ -134,12 +119,37 @@
     <script src="<?= base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
     <script src="<?= base_url('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'); ?>"></script>
     <script src="<?= base_url('assets/dist/js/adminlte.js'); ?>"></script>
+    <script src="<?= base_url('assets/dist/js/owl.carousel.min.js'); ?>"></script>
     <script src="<?= base_url('assets/plugins/jquery-mousewheel/jquery.mousewheel.js'); ?>"></script>
     <script src="" data-auto-replace-svg="nest"></script>
 
     <!-- <script src="plugins/raphael/raphael.min.js"></script> -->
     <script src="<?= base_url('assets/dist/js/demo.js'); ?>""></script>
- 
+    <script>
+        $(document).ready(function () {
+            var owl = $('.owl-carousel');
+            owl.owlCarousel({
+                // items: 1,
+                // loop: true,
+                // autoplay: true,
+                // autoplayTimeout: 1000,
+                // autoplayHoverPause: true,
+                // animateOut: 'slideOutDown',
+                // animateIn: 'flipInX',
+                items: 1, // Number of items to show
+                loop: true, // Enable infinite loop
+                autoplay: true, // Enable autoplay
+                autoplayTimeout: 2000, // Autoplay interval in milliseconds
+                animateOut: 'animate__bounceOutDown', // Animation type for the item disappearing
+                animateIn: 'animate__backInDown', // Animation type for the item appearing
+                autoplayHoverPause: true,
+                // You can customize other options as needed
+
+            });
+
+        });
+
+    </script>
 </body>
 
 </html>

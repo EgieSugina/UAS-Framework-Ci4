@@ -8,7 +8,7 @@ if (!function_exists('processAndUploadImage')) {
 
         if ($file->isValid() && !$file->hasMoved()) {
             $imagePath = $file->getTempName();
-            $image->fromFile($imagePath)->resize(200, 250)->toFile($imagePath);
+            $image->fromFile($imagePath)->resize(400, 480)->toFile($imagePath);
             $imageName = $file->getRandomName();
             $file->move(WRITEPATH . 'uploads', $imageName);
 
