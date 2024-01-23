@@ -18,6 +18,7 @@ class Filters extends BaseConfig
         'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'auth' => \App\Filters\Auth::class,
+        'authMemberAdmin' => \App\Filters\AuthMemberAdmin::class,
         // Other filters...
         // 'role' => RoleFilter::class,
     ];

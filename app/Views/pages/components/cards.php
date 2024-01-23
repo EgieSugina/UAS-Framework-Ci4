@@ -10,10 +10,10 @@
             </a>
             <!-- <span class="product-hot-label bg-danger">hot</span> -->
             <ul class="product-links">
-                <li><a href="#" data-tip="Add to Cart"><i class="far fa-solid fa-cart-shopping "></i></a></li>
-                <li><a href="#" data-tip="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                <li><a href="<?= base_url('/member/addcart'.'/'.$row['game_id']); ?>" data-tip="Add to Cart"><i class="far fa-solid fa-cart-shopping "></i></a></li>
+                <!-- <li><a href="<= base_url('/member/addwishlist'.'/'.$row['game_id']); ?>" data-tip="Add to Wishlist"><i class="far fa-heart"></i></a></li> -->
+                <li><a href="<?= base_url('/member/game-details'.'/'.$row['game_id']); ?>" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
                 <!-- <li><a href="#" data-tip="Compare"><i class="fa fa-random"></i></a></li> -->
-                <li><a href="#" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
             </ul>
         </div>
         <div class="product-content">

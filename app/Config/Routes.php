@@ -12,9 +12,16 @@ $routes->group('auth', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->post('register', 'Auth::saveRegister');
 });
 
-$routes->group(['namespace' => 'App\Controllers', 'filter' => 'auth:Member'], function ($routes) {
-    $routes->get('games/addcart/(:num)', 'Admin\Games::edit/$1');
-    $routes->get('games/addwishlish/(:num)', 'Admin\Games::edit/$1');
+$routes->group('member', ['namespace' => 'App\Controllers', 'filter' => 'authMemberAdmin'], function ($routes) {
+    $routes->get('addcart/(:num)', 'Member\Home::addcart/$1');
+    $routes->get('addwishlist/(:num)', 'Member\Home::addwishlist/$1');
+    $routes->get('game-details/(:num)', 'Member\Home::addwishlish/$1');
+
+
+    $routes->get('cart', 'Member\Home::cart');
+    $routes->get('wishlist', 'Member\Home::wishlist');
+    $routes->get('details', 'Member\Home::details');
+
 });
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Admin'], function ($routes) {
     // Dashboard
