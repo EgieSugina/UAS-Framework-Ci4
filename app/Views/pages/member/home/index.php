@@ -3,7 +3,7 @@
 
 
         background-color: #1c1e21;
-        height: 42rem;
+        height: 40.9rem;
 
     }
 </style>
@@ -22,7 +22,7 @@
                     <?php foreach ($data as $row): ?>
                         <?= view('pages/components/cards', ['row' => $row, 'col' => 'col-sm-12 p-0']) ?>
                     <?php endforeach; ?>
-                    
+
                 </div>
 
             </div>

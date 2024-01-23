@@ -37,7 +37,7 @@
                                 <?php
                                 [$columnName, $unit] = is_array($field) ? $field : [$field, null];
 
-                                if (strpos($columnName, 'subtotal') !== false && is_numeric($row[$columnName])) {
+                                if (strpos($columnName, 'harga') !== false && is_numeric($row[$columnName])) {
                                     echo 'Rp ' . number_format($row[$columnName], 0, '.', '.');
                                 } elseif ($unit !== null) {
                                     if (is_numeric($row[$columnName])) {

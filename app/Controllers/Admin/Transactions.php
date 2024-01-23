@@ -29,7 +29,7 @@ class Transactions extends Controller
         $data_table['fields'] = ['fullname','email','judul_game','jumlah','subtotal','product_code'];
        
         $data = [
-            'table' => view('pages/components/tabels-only', $data_table)
+            'table' => view('pages/components/tabels-no-button', $data_table)
         ];
         layoutAdmin($this->title, 'pages/admin/transactions/index', $data);
     }
