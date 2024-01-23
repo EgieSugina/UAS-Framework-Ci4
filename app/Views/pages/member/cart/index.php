@@ -21,31 +21,42 @@
                             </div>
                         </div> -->
 
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <!-- <div>
-                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                                class="img-fluid rounded-3" alt="Shopping item" width="100" height="120">
-                                        </div> -->
-                                        <div class="ms-3">
-                                            <h5>Iphone 11 pro</h5>
-                                            <p class="small mb-0">256GB, Navy Blue</p>
+                        <?php foreach ($cartItems as $item) {
+                            ?>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <div class="ms-3">
+                                                <h5>
+                                                    <?= $item['judul_game'] ?>
+                                                </h5>
+                                                <p class="small mb-0">
+                                                    <?= $item['genre'] ?>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <div style="width: 50px;">
-                                            <h5 class="fw-normal mb-0">2</h5>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <div style="width: 50px;">
+                                                <h5 class="fw-normal mb-0">
+                                                    <?= $item['total_quantity'] ?>
+                                                </h5>
+                                            </div>
+                                            <div style="width: 180px;">
+                                                <h5 class="mb-0">
+
+                                                    <?= 'Rp ' . number_format($item['harga'], 0, '.', '.') ?>
+
+                                                </h5>
+                                            </div>
+                                            <a href="#!" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                                         </div>
-                                        <div style="width: 80px;">
-                                            <h5 class="mb-0">$900</h5>
-                                        </div>
-                                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <?php
+                        }
+                        ?>
 
 
                     </div>
@@ -72,21 +83,32 @@
 
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-2">Subtotal</p>
-                                    <p class="mb-2">$4798.00</p>
+                                    <p class="mb-2">
+                                        <?= 'Rp ' . number_format($total, 0, '.', '.') ?>
+
+                                    </p>
                                 </div>
 
 
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-2">Total(Incl. taxes)</p>
-                                    <p class="mb-2">$4818.00</p>
-                                </div>
+                                    <p class="mb-2">
+                                        <?= 'Rp ' . number_format(($total * 0.2) + $total, 0, '.', '.') ?>
 
-                                <button type="button" class="btn btn-info btn-block btn-lg">
+
+                                    </p>
+                                </div>
+                                <?php $id = strtolower(session('user')['user_id'] ?? ''); ?>
+
+                                <a href="<?= base_url('/member/checkout/') . $id ?>" type="button"
+                                    class="btn btn-info btn-block btn-lg">
                                     <div class="d-flex justify-content-between">
-                                        <span>$4818.00</span>
+                                        <span>
+                                            <?= 'Rp ' . number_format(($total * 0.2) + $total, 0, '.', '.') ?>
+                                        </span>
                                         <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                     </div>
-                                </button>
+                                </a>
 
                             </div>
                         </div>

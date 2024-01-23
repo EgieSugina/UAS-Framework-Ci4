@@ -10,8 +10,8 @@ $profile = session('user');
     </a>
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li class="p-4 card-orangebg-primary"><a href="<?= base_url('/'); ?>" class="nav-link px-2">STORE</a></li>
-        <li class="p-4"><a href="<?= base_url($role . '/library'); ?>" class="nav-link px-2 link-dark">LIBRARY</a></li>
-        <li class="p-4"><a href="<?= base_url($role . '/profile'); ?>" class="nav-link px-2 link-dark">PROFILE</a></li>
+        <li class="p-4"><a href="<?= base_url('member/library'); ?>" class="nav-link px-2 link-dark">LIBRARY</a></li>
+        <li class="p-4"><a href="<?= base_url('member/profile'); ?>" class="nav-link px-2 link-dark">PROFILE</a></li>
 
     </ul>
 
@@ -22,16 +22,17 @@ $profile = session('user');
 
             <!-- Messages Dropdown Menu -->
             <!-- <li class="mx-4 h2 align-self-center mb-0 dropdown">
-                <a class="nav-link h2 align-self-center mb-0" href="<?= base_url($role . '/wishlist'); ?>">
+                <a class="nav-link h2 align-self-center mb-0" href="<?= base_url('member/wishlist'); ?>">
                     <i class="far fa-regular fa-heart "></i>
                 </a>
             </li> -->
             <!-- Notifications Dropdown Menu -->
             <li class="mx-4 h2 align-self-center mb-0 dropdown">
-                <a class="nav-link h2 align-self-center mb-0" 
-                    href="<?= base_url($role . '/cart'); ?>">
+                <a class="nav-link h2 align-self-center mb-0" href="<?= base_url('member/cart'); ?>">
                     <i class="far fa-solid fa-cart-shopping "></i>
-                    <!-- <span class="badge  badge-danger navbar-badge navbar-badge-mod">15</span> -->
+                    <span class="badge  badge-danger navbar-badge navbar-badge-mod">
+                        <?= $cart ?>
+                    </span>
                 </a>
 
             </li>

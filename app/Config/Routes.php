@@ -18,9 +18,13 @@ $routes->group('member', ['namespace' => 'App\Controllers', 'filter' => 'authMem
     $routes->get('game-details/(:num)', 'Member\Home::addwishlish/$1');
 
 
+    $routes->get('library', 'Member\Home::library');
     $routes->get('cart', 'Member\Home::cart');
     $routes->get('wishlist', 'Member\Home::wishlist');
     $routes->get('details', 'Member\Home::details');
+    $routes->get('checkout/(:num)', 'Member\Home::checkout/$1');
+
+
 
 });
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Admin'], function ($routes) {
@@ -35,8 +39,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Adm
     $routes->post('games/update', 'Admin\Games::update');
     $routes->get('games/delete/(:num)', 'Admin\Games::delete/$1');
 
-    $routes->get('games/addcart/(:num)', 'Admin\Games::edit/$1');
-    $routes->get('games/addwishlish/(:num)', 'Admin\Games::edit/$1');
+    // $routes->get('games/addcart/(:num)', 'Admin\Games::edit/$1');
+    // $routes->get('games/addwishlish/(:num)', 'Admin\Games::edit/$1');
 
     $routes->get('members', 'Admin\Users::member');
 

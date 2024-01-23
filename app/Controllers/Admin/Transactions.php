@@ -22,12 +22,12 @@ class Transactions extends Controller
     }
     public function index()
     {
-        $data_table['data'] = $this->m_models->getTrx(); //$this->m_models->getUser();
-        $data_table['primaryKey'] = 'game_id';
+        $data_table['data'] = $this->m_models->getTransactionDetails(); //$this->m_models->getUser();
+        $data_table['primaryKey'] = 'transaction_id';
         $data_table['judul'] = $this->title;
-        $data_table['header'] = ['transaction_id', 'order_id', 'payment_method_id', 'tanggal_transaksi', 'status_transaksi'];
-        $data_table['fields'] = ['transaction_id', 'order_id', 'payment_method_id', 'tanggal_transaksi', 'status_transaksi'];
-
+        $data_table['header'] = ['fullname','email','judul_game','jumlah','subtotal','product_code'];
+        $data_table['fields'] = ['fullname','email','judul_game','jumlah','subtotal','product_code'];
+       
         $data = [
             'table' => view('pages/components/tabels-only', $data_table)
         ];
