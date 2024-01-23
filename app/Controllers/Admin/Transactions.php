@@ -31,7 +31,7 @@ class Transactions extends Controller
         $data = [
             'table' => view('pages/components/tabels-only', $data_table)
         ];
-        layoutAdmin('Dashbord', 'pages/admin/transactions/index', $data);
+        layoutAdmin($this->title, 'pages/admin/transactions/index', $data);
     }
     public function tambah()
     {

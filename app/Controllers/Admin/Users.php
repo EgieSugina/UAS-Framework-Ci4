@@ -31,11 +31,24 @@ class Users extends Controller
         ];
         echo view('pages/admin/layout', $data);
     }
+    public function member()
+    {
+        $data_table['data'] = $this->m_models->getMember();
+        $data_table['primaryKey'] = 'user_id';
+        $data_table['judul'] = 'Member';
+        $data_table['header'] = ['Fullname', 'Username ', 'Email', 'game owned'];
+        $data_table['fields'] = ['fullname', 'username', 'email', 'game_count'];
+        $data = [
+            'title' => 'Member',
+            'content' => view('pages/admin/users/index', ['table' => view('pages/components/tabels-no-button', $data_table)])
+        ];
+        echo view('pages/admin/layout', $data);
+    }
     public function tambah()
     {
         $data = [
             'title' => $this->title,
-            'content' => view('pages/admin/users/form_tambah'),
+            'content' => view('pages/admin/users/form', ['title' => $this->title, 'act' => '/save', 'role' => $this->role]),
         ];
         echo view('pages/admin/layout', $data);
     }
@@ -43,10 +56,10 @@ class Users extends Controller
     {
         $validation = \Config\Services::validation();
         $validation->setRules([
-            'nama' => 'required',
+            'fullname' => 'required',
             'username' => 'required',
             'password' => 'required',
-            'role' => 'required',
+            'email' => 'required',
             'image' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
         ]);
         if (!$validation->withRequest($this->request)->run()) {
@@ -55,16 +68,17 @@ class Users extends Controller
         $image = $this->request->getFile('image');
         if ($image->isValid() && !$image->hasMoved()) {
             $imageData = processAndUploadImage($image);
-            $nama = $this->request->getPost('nama');
+            $fullname = $this->request->getPost('fullname');
+            $email = $this->request->getPost('email');
             $username = $this->request->getPost('username');
             $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
-            $role = $this->request->getPost('role');
             $userData = [
-                'nama' => $nama,
-                'img' => $imageData,
+                'fullname' => $fullname,
+                'email' => $email,
                 'username' => $username,
                 'password' => $password,
-                'role' => $role,
+                'role' => 'Admin',
+                'img' => $imageData,
             ];
             $this->m_models->insert($userData);
             return redirect()->to($this->role . '/users')->with('success', 'Pengguna berhasil dibuat.');
@@ -77,42 +91,37 @@ class Users extends Controller
         $dataUsers = $this->m_models->getUserById($id);
         $data = [
             'title' => $this->title,
-            'content' => view('pages/admin/users/form_edit', ['dataUsers' => $dataUsers]),
+            'content' => view('pages/admin/users/form', ['data' => $dataUsers, 'title' => $this->title, 'act' => '/update', 'role' => $this->role]),
         ];
         echo view('pages/admin/layout', $data);
     }
     public function update()
     {
-        $validation = \Config\Services::validation();
-        $validation->setRules([
-            'nama' => 'required',
-            'username' => 'required',
-            'role' => 'required',
-        ]);
-        if (!$validation->withRequest($this->request)->run()) {
-            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
-        }
-        $imageData = '';
-        $imgBase64 = $this->request->getPost('imgBase64');
-        if ($this->request->getFile('image')->isValid()) {
-            $validation->setRules([
-                'image' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
-            ]);
-            $image = $this->request->getFile('image');
-            $imageData = processAndUploadImage($image);
-        } elseif (!empty($imgBase64)) {
-            $imageData = $imgBase64;
-        }
-        $nama = $this->request->getPost('nama');
+        $image = $this->request->getFile('image');
+        $fullname = $this->request->getPost('fullname');
+        $email = $this->request->getPost('email');
         $username = $this->request->getPost('username');
-        $role = $this->request->getPost('role');
+        $password = $this->request->getPost('password');
+
         $userData = [
-            'nama' => $nama,
-            'img' => $imageData,
+            'fullname' => $fullname,
+            'email' => $email,
             'username' => $username,
-            'role' => $role,
+            'password' => $password,
+            'role' => 'Admin',
         ];
-        $this->m_models->updateUser($this->request->getPost('id'), $userData);
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageData = processAndUploadImage($image);
+            $userData['img'] = $imageData;
+        }
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageData = processAndUploadImage($image);
+            $userData['img'] = $imageData;
+        }
+        if (isset($password)) {
+            $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+        $this->m_models->updateUser($this->request->getPost('user_id'), $userData);
         return redirect()->to($this->role . '/users')->with('success', 'Pengguna berhasil diperbarui.');
     }
     public function delete($id)

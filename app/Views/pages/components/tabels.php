@@ -37,7 +37,23 @@
                                 <?php
                                 [$columnName, $unit] = is_array($field) ? $field : [$field, null];
 
-                                if (strpos($columnName, 'harga') !== false && is_numeric($row[$columnName])) {
+                                if (strpos($columnName, 'rating')) {
+                                    ?>
+                                    <ul class="rating" id="rating"></ul>
+                                    <script>
+                                        var rating = <?= $row[$columnName] ?>;
+                                        var rating_on_five_scale = Math.round(rating / 2);
+                                        var ratingContainer = document.getElementById("rating");
+                                        for (var i = 1; i <= 5; i++) {
+                                            var star = document.createElement('li');
+                                            var starClass = (i <= rating_on_five_scale) ? 'fas fa-star' : (i === rating_on_five_scale) ? 'fas fa-star-half-alt' : 'far fa-star';
+                                            star.className = starClass;
+                                            ratingContainer.appendChild(star);
+                                        }
+                                    </script>
+                                    <?php
+
+                                } elseif (strpos($columnName, 'harga') !== false && is_numeric($row[$columnName])) {
                                     echo 'Rp ' . number_format($row[$columnName], 0, '.', '.');
                                 } elseif ($unit !== null) {
                                     if (is_numeric($row[$columnName])) {
@@ -59,6 +75,15 @@
                             if (isset($row['img']) && !empty($row['img'])) {
 
                                 $imgSrc = isset($row['img']) && !empty($row['img']) ? 'data:image/png;base64,' . $row['img'] : '//placehold.it/200x250';
+                                ?>
+                                <a class="btn btn-info btn-xs" rel="popover" data-img="<?= $imgSrc ?>"><i
+                                        class="fa-solid fa-image "></i></a> |
+                            <?php } ?>
+                            <?php
+
+                            if (isset($row['cover']) && !empty($row['cover'])) {
+
+                                $imgSrc = isset($row['cover']) && !empty($row['cover']) ? 'data:image/png;base64,' . $row['cover'] : '//placehold.it/200x250';
                                 ?>
                                 <a class="btn btn-info btn-xs" rel="popover" data-img="<?= $imgSrc ?>"><i
                                         class="fa-solid fa-image "></i></a> |

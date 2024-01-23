@@ -60,7 +60,8 @@ class Auth extends Controller
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('login');
+        return redirect('/');
+
     }
     public function saveRegister()
     {

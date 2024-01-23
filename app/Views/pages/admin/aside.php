@@ -1,4 +1,7 @@
-<?php $role = strtolower(session('user')['role'] ?? ''); ?>
+<?php
+$role = strtolower(session('user')['role'] ?? '');
+$profile = session('user');
+?>
 <a href=" " class="brand-link">
     <img src="<?= base_url('/assets/images/logo.png') ?>" alt="Gamegeist Logo" width="1000px"
         class="brand-image text-white" style="opacity: .8">
@@ -9,15 +12,19 @@
 <div class="sidebar">
 
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <!-- <div class="image">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div> -->
+        <div class="image">
+            <img src="<?= 'data:image/png;base64,' . $profile['img'] ?>" height="160" width="160"
+                class="img-circle elevation-2" alt="User Image">
+        </div>
+
         <div class="info">
-            <a href="#" class="d-block">Egie Sugina</a>
+            <div class="d-block">
+                <?= $profile['fullname'] ?>
+            </div>
         </div>
     </div>
 
- 
+
 
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

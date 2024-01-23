@@ -12,6 +12,10 @@ $routes->group('auth', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->post('register', 'Auth::saveRegister');
 });
 
+$routes->group(['namespace' => 'App\Controllers', 'filter' => 'auth:Member'], function ($routes) {
+    $routes->get('games/addcart/(:num)', 'Admin\Games::edit/$1');
+    $routes->get('games/addwishlish/(:num)', 'Admin\Games::edit/$1');
+});
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Admin'], function ($routes) {
     // Dashboard
     $routes->add('dashboard', 'Admin\Dashboard::index');
@@ -24,12 +28,11 @@ $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Adm
     $routes->post('games/update', 'Admin\Games::update');
     $routes->get('games/delete/(:num)', 'Admin\Games::delete/$1');
 
-    $routes->get('members', 'Admin\Members::index');
-    $routes->get('members/tambah', 'Admin\Members::tambah');
-    $routes->get('members/edit/(:num)', 'Admin\Members::edit/$1');
-    $routes->post('members/save', 'Admin\Members::save');
-    $routes->post('members/update', 'Admin\Members::update');
-    $routes->get('members/delete/(:num)', 'Admin\Members::delete/$1');
+    $routes->get('games/addcart/(:num)', 'Admin\Games::edit/$1');
+    $routes->get('games/addwishlish/(:num)', 'Admin\Games::edit/$1');
+
+    $routes->get('members', 'Admin\Users::member');
+
 
     $routes->get('transactions', 'Admin\Transactions::index');
     $routes->get('transactions/tambah', 'Admin\Transactions::tambah');

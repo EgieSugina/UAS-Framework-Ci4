@@ -26,7 +26,12 @@
             <ul class="rating" id="rating-<?= $row['game_id'] ?>-<?= $uniq ?>"></ul>
             <div class="price">
                 <?php if (is_numeric($row['harga'])) {
-                    echo 'Rp ' . number_format($row['harga'], 0, '.', '.');
+                    if ($row['harga'] == 0) {
+                        echo 'D1A.220.400';
+                    } else {
+                        echo 'Rp ' . number_format($row['harga'], 0, '.', '.');
+
+                    }
                 } ?>
             </div>
         </div>
@@ -38,7 +43,6 @@
     var rating = <?= $row['rating'] ?>;
     var rating_on_five_scale = Math.round(rating / 2);
     var uniqueId = "<?= $row['game_id'] ?>-" + "<?= $uniq ?>";
-    console.log(uniqueId);
     var ratingContainer = document.getElementById("rating-" + uniqueId);
 
     for (var i = 1; i <= 5; i++) {

@@ -34,7 +34,7 @@
         </aside>
         <div class="content-wrapper">
             <div class="content-header">
-                <?= view('pages/admin/content-header'); ?>
+                <?= view('pages/admin/content-header', ['title' => $title]); ?>
             </div>
             <section class="content">
                 <div class="container-fluid">
@@ -87,6 +87,12 @@
     </script>
 
     <script>
+        $('a[rel=popover]').popover({
+            html: true,
+            trigger: 'hover',
+            placement: 'left',
+            content: function () {return '<img height="240" width="200" style="width: 200px !important; height: 250px !important;" alt="..." class=" rounded"  src="' + $(this).data('img') + '" />';}
+        });
         $(" #table-main").DataTable({
             responsive: true, lengthChange: false, autoWidth: false, buttons: [{
                 text: '<i class="fas fa-solid fa-plus"></i> Tambah', className: 'bg-success', action: function (e, dt, node,
@@ -100,7 +106,10 @@
         }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)');
         $(" #table-main2").DataTable({
             responsive: true, lengthChange: false, autoWidth: false, buttons: [],
-        }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)'); 
+        }).buttons().container().appendTo('#table-main2_wrapper .col-md-6:eq(0)');
+        $(" #tabels-no-button").DataTable({
+            responsive: true, lengthChange: false, autoWidth: false, buttons: [],
+        }).buttons().container().appendTo('#tabels-no-button_wrapper .col-md-6:eq(0)'); 
     </script>
 
 </body>
