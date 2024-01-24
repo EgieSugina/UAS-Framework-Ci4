@@ -14,7 +14,7 @@
                 <div class="row">
 
                     <div class="col-lg-7">
-                        <h5 class="mb-3"><a href="#!" class="text-body text-white"><i
+                        <h5 class="mb-3"><a href="<?= previous_url() ?>" class="text-body text-white"><i
                                     class="fas fa-long-arrow-alt-left me-2 text-white"></i> Continue shopping</a></h5>
                         <hr>
 
@@ -57,7 +57,8 @@
 
                                                 </h5>
                                             </div>
-                                            <a href="#!" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="<?= base_url('/member/removeitemcart/') . $item['cart_id'] ?>"
+                                                class="text-danger"><i class="fas fa-trash-alt"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -77,12 +78,14 @@
                                 </div>
                                 <p class="small mb-2">Card type</p>
                                 <a href="#!" type="submit" class="card-holder "><img
-                                        src="<?= base_url('/assets/images/ovo.png') ?>" width="20px" height="20px"> OVO</a>
+                                        src="<?= base_url('/assets/images/ovo.png') ?>" width="20px" height="20px">
+                                    OVO</a>
                                 <a href="#!" type="submit" class="card-holder "><img
-                                        src="<?= base_url('/assets/images/dana.png') ?>" width="30px" height="20px"> DANA</a>
+                                        src="<?= base_url('/assets/images/dana.png') ?>" width="30px" height="20px">
+                                    DANA</a>
                                 <a href="#!" type="submit" class="card-holder "><img
-                                        src="<?= base_url('/assets/images/gopay.png') ?>" width="20px"
-                                        height="20px"> GoPay</a>
+                                        src="<?= base_url('/assets/images/gopay.png') ?>" width="20px" height="20px">
+                                    GoPay</a>
                                 <!-- <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a> -->
                                 <form class="mt-4">
                                     <!-- <div class="form-outline form-white mb-4">

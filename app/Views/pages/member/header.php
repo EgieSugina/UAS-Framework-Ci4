@@ -8,15 +8,11 @@ $profile = session('user');
             class="brand-image text-white" style="opacity: .8">
         <H1>Game<b>geist</b></H1>
     </a>
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li class="p-4 card-orangebg-primary"><a href="<?= base_url('/'); ?>" class="nav-link px-2">STORE</a></li>
-        <li class="p-4"><a href="<?= base_url('member/library'); ?>" class="nav-link px-2 link-dark">LIBRARY</a></li>
-        <li class="p-4"><a href="<?= base_url('member/profile'); ?>" class="nav-link px-2 link-dark">PROFILE</a></li>
-
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" id="mainNav">
+        <li class="p-4"><a href="<?= base_url('/'); ?>" class="nav-link px-2 link-dark"><strong>STORE</strong></a></li>
+        <li class="p-4"><a href="<?= base_url('member/library'); ?>" class="nav-link px-2 link-dark"><strong>LIBRARY</strong></a></li>
+        <li class="p-4"><a href="<?= base_url('member/profile'); ?>" class="nav-link px-2 link-dark"><strong>PROFILE</strong></a></li>
     </ul>
-
-
-
     <div class="">
         <ul class="navbar-nav ml-auto d-flex flex-row">
 
@@ -30,9 +26,12 @@ $profile = session('user');
             <li class="mx-4 h2 align-self-center mb-0 dropdown">
                 <a class="nav-link h2 align-self-center mb-0" href="<?= base_url('member/cart'); ?>">
                     <i class="far fa-solid fa-cart-shopping "></i>
-                    <span class="badge  badge-danger navbar-badge navbar-badge-mod">
-                        <?= $cart ?>
-                    </span>
+                    <?php if (isset($cart) && $cart > 0) { ?>
+                        <span class="badge  badge-danger navbar-badge navbar-badge-mod">
+                            <?= $cart ?>
+                        </span>
+                    <?php } ?>
+
                 </a>
 
             </li>
@@ -70,3 +69,19 @@ $profile = session('user');
         </ul>
     </div>
 </header>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var currentUrl = window.location.href;
+
+        // Get all the anchors inside the #mainNav
+        var navLinks = document.querySelectorAll("#mainNav a");
+
+        // Loop through each anchor and check if its href matches the current URL
+        navLinks.forEach(function (link) {
+            if (link.href === currentUrl) {
+                // Add the 'bg-primary' class to the parent <li> element
+                link.parentElement.classList.add("bg-primary");
+            }
+        });
+    });
+</script>

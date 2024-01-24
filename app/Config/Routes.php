@@ -3,6 +3,8 @@
 use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/', 'Member\Home::index');
+$routes->get('game-details/(:num)', 'Member\Home::gameDetails/$1');
+
 $routes->get('/login', 'Auth::index');
 $routes->get('/register', 'Auth::register');
 $routes->get('access-denied', 'Auth::accessDenied');
@@ -14,17 +16,20 @@ $routes->group('auth', ['namespace' => 'App\Controllers'], function ($routes) {
 
 $routes->group('member', ['namespace' => 'App\Controllers', 'filter' => 'authMemberAdmin'], function ($routes) {
     $routes->get('addcart/(:num)', 'Member\Home::addcart/$1');
+    $routes->get('removeitemcart/(:num)', 'Member\Home::removeitemcart/$1');
     $routes->get('addwishlist/(:num)', 'Member\Home::addwishlist/$1');
-    $routes->get('game-details/(:num)', 'Member\Home::addwishlish/$1');
+    $routes->get('game-details/(:num)', 'Member\Home::gameDetails/$1');
 
 
+    // $routes->post('addcartpost', 'Member\Home::addcartpost');
+    $routes->get('profile', 'Member\Home::profile');
     $routes->get('library', 'Member\Home::library');
     $routes->get('cart', 'Member\Home::cart');
     $routes->get('wishlist', 'Member\Home::wishlist');
-    $routes->get('details', 'Member\Home::details');
     $routes->get('checkout/(:num)', 'Member\Home::checkout/$1');
 
 
+    $routes->post('profile/update', 'Admin\Users::update_profile');
 
 });
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Admin'], function ($routes) {

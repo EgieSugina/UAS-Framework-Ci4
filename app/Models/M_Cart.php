@@ -34,7 +34,7 @@ class M_Cart extends Model
     }
     public function getCartItemsWithTotalQuantity($user_id)
     {
-        $cartItems = $this->select('cart.user_id, cart.game_id, SUM(cart.jumlah) as total_quantity,SUM(cart.jumlah * games_product.harga) as total_cost, games_product.judul_game, games_product.deskripsi, games_product.harga, games_product.tanggal_rilis, games_product.publisher, games_product.platform, games_product.genre, games_product.rating, games_product.cover, games_product.backcover')
+        $cartItems = $this->select('cart.cart_id,cart.user_id, cart.game_id, SUM(cart.jumlah) as total_quantity,SUM(cart.jumlah * games_product.harga) as total_cost, games_product.judul_game, games_product.deskripsi, games_product.harga, games_product.tanggal_rilis, games_product.publisher, games_product.platform, games_product.genre, games_product.rating, games_product.cover, games_product.backcover')
             ->join('games_product', 'games_product.game_id = cart.game_id')
             ->where('cart.user_id', $user_id)
             ->groupBy('cart.game_id')
@@ -106,6 +106,10 @@ class M_Cart extends Model
             echo var_dump($e->getMessage());
             return false;
         }
+    }
+    public function deleteByid($id)
+    {
+        return $this->db->table($this->table)->delete(array('cart_id' => $id));
     }
 
 }

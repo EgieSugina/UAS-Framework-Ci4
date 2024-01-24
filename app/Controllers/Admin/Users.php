@@ -95,6 +95,36 @@ class Users extends Controller
         ];
         echo view('pages/admin/layout', $data);
     }
+
+    public function update_profile()
+    {
+        $image = $this->request->getFile('image');
+        $fullname = $this->request->getPost('fullname');
+        $email = $this->request->getPost('email');
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        $userData = [
+            'fullname' => $fullname,
+            'email' => $email,
+            'username' => $username,
+            'password' => $password,
+            // 'role' => 'Member',
+        ];
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageData = processAndUploadImage($image);
+            $userData['img'] = $imageData;
+        }
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageData = processAndUploadImage($image);
+            $userData['img'] = $imageData;
+        }
+        if (isset($password)) {
+            $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+        $this->m_models->updateUser($this->request->getPost('user_id'), $userData);
+        return redirect()->back()->with('success', 'Pengguna berhasil diperbarui.');
+    }
     public function update()
     {
         $image = $this->request->getFile('image');
