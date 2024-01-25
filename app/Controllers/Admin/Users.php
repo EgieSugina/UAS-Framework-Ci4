@@ -119,7 +119,7 @@ class Users extends Controller
             $imageData = processAndUploadImage($image);
             $userData['img'] = $imageData;
         }
-        if (isset($password)) {
+        if (isset($password) && !empty($password)) {
             $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
         $this->m_models->updateUser($this->request->getPost('user_id'), $userData);
@@ -148,7 +148,7 @@ class Users extends Controller
             $imageData = processAndUploadImage($image);
             $userData['img'] = $imageData;
         }
-        if (isset($password)) {
+        if (isset($password) && !empty($password)) {
             $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
         $this->m_models->updateUser($this->request->getPost('user_id'), $userData);

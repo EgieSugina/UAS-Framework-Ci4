@@ -96,7 +96,7 @@ class Home extends Controller
     public function checkout($id)
     {
         $this->m_models_cart->checkout($this->user_id);
-        return redirect()->to('library');
+        return redirect()->to('member/library');
     }
     public function gameDetails($id)
     {
