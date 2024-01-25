@@ -108,7 +108,6 @@ class Users extends Controller
             'fullname' => $fullname,
             'email' => $email,
             'username' => $username,
-            'password' => $password,
             // 'role' => 'Member',
         ];
         if ($image->isValid() && !$image->hasMoved()) {
@@ -119,7 +118,7 @@ class Users extends Controller
             $imageData = processAndUploadImage($image);
             $userData['img'] = $imageData;
         }
-        if (isset($password) && !empty($password)) {
+        if (!empty($password)) {
             $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
         $this->m_models->updateUser($this->request->getPost('user_id'), $userData);
@@ -137,7 +136,7 @@ class Users extends Controller
             'fullname' => $fullname,
             'email' => $email,
             'username' => $username,
-            'password' => $password,
+
             'role' => 'Admin',
         ];
         if ($image->isValid() && !$image->hasMoved()) {
@@ -148,7 +147,7 @@ class Users extends Controller
             $imageData = processAndUploadImage($image);
             $userData['img'] = $imageData;
         }
-        if (isset($password) && !empty($password)) {
+        if (!empty($password)) {
             $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
         $this->m_models->updateUser($this->request->getPost('user_id'), $userData);

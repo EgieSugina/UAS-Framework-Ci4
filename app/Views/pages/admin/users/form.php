@@ -119,7 +119,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
-        <button type="submit" id="submitBtn" class="btn btn-primary ">Save</button>
+        <button type="submit" id="submitBtn" id="submitBtn" class="btn btn-primary ">Save</button>
         <a type="submit" href="<?= previous_url() ?>" class="btn btn-danger float-right">Cancel</a>
     </div>
     <!-- /.card-footer -->
@@ -134,13 +134,15 @@
         if (password !== confirmPassword) {
             document.getElementById('confirm_password').classList.add('is-invalid');
             document.getElementById('password').classList.add('is-invalid');
-            document.getElementById('passspan1').classList.add('text-danger');
+            // document.getElementById('passspan1').classList.add('text-danger');
+            document.getElementById('submitBtn').classList.add('disabled');
             document.getElementById('passspan2').classList.add('text-danger');
             submitBtn.disabled = true;
         } else {
             document.getElementById('confirm_password').classList.remove('is-invalid');
             document.getElementById('password').classList.remove('is-invalid');
-            document.getElementById('passspan1').classList.remove('text-danger');
+            // document.getElementById('passspan1').classList.remove('text-danger');
+            document.getElementById('submitBtn').classList.remove('disabled');
             document.getElementById('passspan2').classList.remove('text-danger');
             submitBtn.disabled = false;
         }
