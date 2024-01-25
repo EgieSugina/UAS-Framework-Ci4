@@ -3,6 +3,7 @@
 use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/', 'Member\Home::index');
+$routes->get('/gallery', 'Member\Home::gallery');
 $routes->get('game-details/(:num)', 'Member\Home::gameDetails/$1');
 
 $routes->get('/login', 'Auth::index');
@@ -34,7 +35,8 @@ $routes->group('member', ['namespace' => 'App\Controllers', 'filter' => 'authMem
 });
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Admin'], function ($routes) {
     // Dashboard
-    $routes->add('dashboard', 'Admin\Dashboard::index');
+    $routes->add('dashboard', 'Admin\Games::gallery');
+    $routes->get('gallery', 'Admin\Games::gallery');
 
     // Satuan
     $routes->get('games', 'Admin\Games::index');

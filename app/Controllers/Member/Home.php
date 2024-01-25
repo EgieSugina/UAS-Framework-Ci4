@@ -34,6 +34,13 @@ class Home extends Controller
         $dataForm['cart'] = $this->m_models_cart->countItemsByUserId($this->user_id);
         layoutMember('Dashbord', 'pages/member/home/index', $dataForm);
     }
+    public function gallery()
+    {
+
+        $dataForm['data'] = $this->m_models->getGames();
+        $dataForm['cart'] = $this->m_models_cart->countItemsByUserId($this->user_id);
+        layoutMember('Dashbord', 'pages/member/gallery/index', $dataForm);
+    }
     public function profile()
     {
 

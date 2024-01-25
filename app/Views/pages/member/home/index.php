@@ -24,7 +24,7 @@
                     foreach ($data as $index => $row):
                         $c++;
                         $time = hrtime();
-                            ?>
+                        ?>
                         <?= view('pages/components/cards', ['row' => $row, 'col' => 'col-sm-12 p-0', 'index' => $index + $c + $time[0] * 1e9 + $time[1] . 'carousel']) ?>
                     <?php endforeach; ?>
 

@@ -5,7 +5,7 @@ $profile = session('user');
 <a href=" " class="brand-link">
     <img src="<?= base_url('/assets/images/logo.png') ?>" alt="Gamegeist Logo" width="1000px"
         class="brand-image text-white" style="opacity: .8">
-    <span class="brand-text font-weight-light">Gamegeist</span>
+    <span class="brand-text font-weight-light">Game<b>geist</b></span>
 </a>
 
 
@@ -37,8 +37,17 @@ $profile = session('user');
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="<?= base_url($role . '/gallery'); ?>" class="nav-link">
+                    <i class="nav-icon far fa-images"></i>
+                    <p>
+                        Gallery
+                        <!-- <span class="badge badge-info right">2</span> -->
+                    </p>
+                </a>
+            </li>
             <li class="nav-header"> </li>
-             
+
             <li class="nav-item">
                 <a href="<?= base_url($role . '/games'); ?>" class="nav-link">
                     <i class="nav-icon fas fa-solid fa-list"></i>

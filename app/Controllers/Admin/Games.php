@@ -31,7 +31,13 @@ class Games extends Controller
         $data = [
             'table' => view('pages/components/tabels', $data_table)
         ];
-        layoutAdmin('Dashbord', 'pages/admin/games/index', $data);
+        layoutAdmin($this->title, 'pages/admin/games/index', $data);
+    }
+    public function gallery()
+    {
+
+        $dataForm['data'] = $this->m_models->getGames();
+        layoutAdmin('Gallery', 'pages/member/gallery/index', $dataForm);
     }
     public function tambah()
     {

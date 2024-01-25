@@ -2,18 +2,19 @@
 $role = strtolower(session('user')['role'] ?? '');
 $profile = session('user');
 ?>
-<header class="d-flex flex-wrap align-items-center justify-content-between justify-content-md-between  mb-4 ">
-    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+<header class="row flex-wrap align-items-center justify-content-between justify-content-md-between  mb-4 ">
+    <a href="/" class="col-2 d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
         <img src="<?= base_url('/assets/images/logo.png') ?>" alt="Gamegeist Logo" width="70px"
             class="brand-image text-white" style="opacity: .8">
         <H1>Game<b>geist</b></H1>
     </a>
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" id="mainNav">
+    <ul class="nav col-8 col-md-auto mb-2 justify-content-center mb-md-0" id="mainNav">
         <li class="p-4"><a href="<?= base_url('/'); ?>" class="nav-link px-2 link-dark"><strong>STORE</strong></a></li>
         <li class="p-4"><a href="<?= base_url('member/library'); ?>" class="nav-link px-2 link-dark"><strong>LIBRARY</strong></a></li>
         <li class="p-4"><a href="<?= base_url('member/profile'); ?>" class="nav-link px-2 link-dark"><strong>PROFILE</strong></a></li>
+        <li class="p-4"><a href="<?= base_url('gallery'); ?>" class="nav-link px-2 link-dark"><strong>GALLERY</strong></a></li>
     </ul>
-    <div class="">
+    <div class="col-2">
         <ul class="navbar-nav ml-auto d-flex flex-row">
 
             <!-- Messages Dropdown Menu -->
@@ -58,7 +59,7 @@ $profile = session('user');
                     </div>
                 </li>
             <?php } else { ?>
-                <li class="mx-4 align-self-center">
+                <li class=" align-self-center">
                     <a class="nav-link font-weight-bolder" href="login">
                         <i class="fa-solid fa-right-to-bracket  text-warning"> Login</i>
 
